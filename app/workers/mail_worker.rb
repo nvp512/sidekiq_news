@@ -1,6 +1,6 @@
 class MailWorker
   include Sidekiq::Worker
-  # sidekiq_options queue: :event_fun
+  sidekiq_options queue: :mailer_wk
 
   def perform(id)
     user = User.find(id)

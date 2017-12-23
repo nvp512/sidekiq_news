@@ -41,3 +41,12 @@ https://qiita.com/nysalor/items/94ecd53c2141d1c27d1f
 6. ### Config Client and Server-adapter
 
 7. ### Config yml file
+  ```
+  :verbose: false
+  :pidfile: ./tmp/pids/sidekiq.pid
+  :logfile: ./log/sidekiq.log
+  :concurrency:  25
+  :queues:
+    - default
+    - mailer_wk
+  ```

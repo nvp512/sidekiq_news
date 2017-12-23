@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    # MailWorker.perform_async(@user.id)
+    MailWorker.perform_async(@user.id)
   end
 
   # GET /users/new
