@@ -1,4 +1,4 @@
-0. ### Cơ chế xử lý
+0. ### Cơ chế xử lý (tham khảo)
 >### Tạo Job
 
  >Thông qua gọi các hàm tạo Job, sẽ sinh ra 1 Hash tương ứng với job, chuyển đổi Hash thành JSON String và đẩy String đấy vào hàng đợi của Redis.
@@ -15,6 +15,10 @@
 
  >Mỗi server Sidekiq lấy các job từ hàng đợi trong Redis và thực thi chúng. Giống như các tiến trình của trang web, Sidekiq tải lại framework Rails cho các job và workers có đầy đủ các Rails API bao gồm Active Record để thực hiện. Server sẽ khởi tạo các worker và truyền vào các tham số. Mọi thứ sẽ được thực hiện dựa theo mục đích của job.
 
+ > ### Study case: Đặc biệt hữu ích cho công việc gửi mail cho nhiều user.
+
+https://qiita.com/nysalor/items/94ecd53c2141d1c27d1f
+
 1. ### Generate worker
    `rails g sidekiq:worker Hard # will create app/workers/hard_worker.rb`
 2. ### To start sidekiq
@@ -28,14 +32,11 @@
 3. ### WebUI Terminal
    http://localhost:3000/sidekiq
 
-4. ### Dua vao queue de thuc hien ngay lap tuc
+4. ### Push to Queue
    `HardWorker.perform_async ("params")`
 
-5. ### Thuc hien hen gio
+5. ### Push to Queue after inteval
    `HardWorker.perform_in (1.hour, "params")`
-
-    >NOTE: Vi du lieu nay duoc parse sang JSON -> dua vao Redis queue
-  -> params phai la cac loai du lieu don gian nhu string, number.
 
 6. ### Config Client and Server-adapter
 

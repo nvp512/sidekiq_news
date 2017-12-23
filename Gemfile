@@ -7,6 +7,10 @@ gem 'rails', '4.2.6'
 gem 'redis-rails'
 gem 'sinatra', require: false #for terminal
 gem 'sidekiq'
+gem 'mysql2'
+gem 'figaro' #application.yml
+gem 'pry'
+#rails g figaro:install
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
