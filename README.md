@@ -18,10 +18,17 @@
  > ### Study case: Đặc biệt hữu ích cho công việc gửi mail cho nhiều user.
 
 https://qiita.com/nysalor/items/94ecd53c2141d1c27d1f
-
+https://viblo.asia/p/background-processing-in-ruby-on-rails-part-1-wznVGLVORZOe
+https://github.com/mperham/sidekiq/wiki/Advanced-Options
 1. ### Generate worker
    `rails g sidekiq:worker Hard # will create app/workers/hard_worker.rb`
-2. ### To start sidekiq
+2. ### sidekiq_options  
+    `sidekiq_options queue: :event_worker, retry: 5, backtrace: true`
+
+    - :backtrace - Xác định có hay không lưu các error backtrace để thử payload lại, mặc định là false. các error backtrace được dùng cho mục đích hiển thị trong Sidekiq web UI. Ngoài ra, bạn có thể chỉ định số dòng để tiết kiệm (ví dụ, backtrace: 15).
+    - :queue - Tên của hàng đợi cho worker, mặc định để "default"
+    - :retry - Theo mặc định, một worker có thể thử lại các jobs cho đến khi nó hoàn thành. Thiết lập tùy chọn :retry để false sẽ hướng dẫn Sidekiq chạy một job chỉ một lần. Ngoài ra, bạn có thể chỉ định tối đa số lần một job được thử lại (ví dụ, retry:5).      
+3. ### To start sidekiq
    `bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production`
 
     -d, Daemonize process
@@ -29,18 +36,18 @@ https://qiita.com/nysalor/items/94ecd53c2141d1c27d1f
     -C, path to YAML config file
     -e, Application environment
 
-3. ### WebUI Terminal
+4. ### WebUI Terminal
    http://localhost:3000/sidekiq
 
-4. ### Push to Queue
+5. ### Push to Queue
    `HardWorker.perform_async ("params")`
 
-5. ### Push to Queue after inteval
+6. ### Push to Queue after inteval
    `HardWorker.perform_in (1.hour, "params")`
 
-6. ### Config Client and Server-adapter
+7. ### Config Client and Server-adapter
 
-7. ### Config yml file
+8. ### Config yml file
   ```
   :verbose: false
   :pidfile: ./tmp/pids/sidekiq.pid
