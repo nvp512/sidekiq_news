@@ -8,6 +8,7 @@ class CreateCoins < ActiveRecord::Migration
       t.decimal :price_24h_before, :precision => 8, :scale => 4
       t.text :overview
 
+      t.timestamps null: false
     end
   end
 end

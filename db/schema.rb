@@ -11,7 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171222153829) do
+ActiveRecord::Schema.define(version: 20171226172213) do
+
+  create_table "coins", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.string   "symbol",           limit: 255
+    t.decimal  "price",                          precision: 8, scale: 4
+    t.decimal  "total_supply",                   precision: 8, scale: 4
+    t.decimal  "price_24h_before",               precision: 8, scale: 4
+    t.text     "overview",         limit: 65535
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+  end
+
+  create_table "exchange_pairs", force: :cascade do |t|
+    t.integer  "exchange_id", limit: 4
+    t.integer  "pair_id",     limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "overview",   limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "pairs", force: :cascade do |t|
+    t.string   "base_currency", limit: 255
+    t.string   "unit_currency", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",       limit: 255
