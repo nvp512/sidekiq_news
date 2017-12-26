@@ -7,7 +7,7 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  database: sidekiq_try
+  database: coin_list
   username: root
   password: root
   pool: 10
